@@ -1,13 +1,14 @@
-name: ESLint Check
+name: Jest Tests
 
 on:
   pull_request:
     branches: [main, dev]
+    types: [opened, edited, closed, reopened]
   workflow_dispatch:
-
+      
 jobs:
-  lint:
-    name: Run ESLint
+  test:
+    name: Run Jest
     runs-on: ubuntu-22.04
 
     steps:
@@ -22,8 +23,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Force ESLint fix
-        run: npm run lint:fix
-
-      - name: Run ESLint
-        run: npm run lint
+      - name: Run Jest
+        run: npm test
